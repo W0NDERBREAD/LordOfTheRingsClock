@@ -12,6 +12,7 @@ import board
 from PIL import Image, ImageDraw, ImageFont
 from adafruit_rgb_display import st7789
 import datetime as dt
+from pathlib import Path
 
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
@@ -57,8 +58,9 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+
 text = ''
-with open('lotr.txt', 'r') as file:
+with (Path(__file__).parent / "files/lotr.txt").open() as file:
     text = file.read()
 
 font_file = "/usr/share/fonts/truetype/liberation2/LiberationMono-Bold.ttf"
